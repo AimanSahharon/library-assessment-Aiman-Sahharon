@@ -1,0 +1,16 @@
+﻿@model LibraryManagementSystemAimanSahharon.Models.Book
+@{
+    ViewData["Title"] = "Delete Book";
+}
+
+<div class="alert alert-danger">
+    <h4>Confirm Deletion</h4>
+    <p>Are you sure you want to remove <strong>@Model.Title</strong> by @Model.Author?</p>
+    <p class="text-muted">This will also delete all loan records for this book.</p>
+</div>
+
+<form asp-action="Delete" asp-route-id="@Model.Id" method="post">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
