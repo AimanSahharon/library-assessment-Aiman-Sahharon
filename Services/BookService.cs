@@ -17,7 +17,7 @@ namespace LibraryManagementSystemAimanSahharon.Services
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(
-            string? authorFilter, string? titleFilter)
+            string? authorFilter, string? titleFilter, string? sortBy)
         {
             // Start with all books, including their loans so we can count available copies
             var query = _db.Books.Include(b => b.Loans).AsQueryable();
@@ -32,7 +32,20 @@ namespace LibraryManagementSystemAimanSahharon.Services
                 query = query.Where(b =>
                     b.Title.ToLower().Contains(titleFilter.ToLower()));
 
-            return await query.OrderBy(b => b.Title).ToListAsync();
+            query = sortBy switch
+            {
+                "title_asc" => query.OrderBy(b => b.Title),
+                "title_desc" => query.OrderByDescending(b => b.Title),
+
+                "author_asc" => query.OrderBy(b => b.Author),
+                "author_desc" => query.OrderByDescending(b => b.Author),
+
+                _ => query.OrderBy(b => b.Title) // default
+            };
+
+
+            //return await query.OrderBy(b => b.Title).ToListAsync();
+            return await query.ToListAsync();
         }
 
         public async Task<Book?> GetBookByIdAsync(int id)
@@ -45,6 +58,21 @@ namespace LibraryManagementSystemAimanSahharon.Services
 
         public async Task<Book> CreateBookAsync(Book book)
         {
+            var exists = await _db.Books
+        .AnyAsync(b => b.ISBN == book.ISBN);
+
+            //if (exists)
+            //{
+            //    _logger.LogWarning("Duplicate ISBN attempted: {ISBN}", book.ISBN);
+            //    throw new InvalidOperationException("A book with this ISBN already exists.");
+            //}
+
+            //if (book.TotalCopies <= 0)
+            //    throw new InvalidOperationException("Total copies must be greater than 0.");
+
+            //if (book.PublishedYear > DateTime.Now.Year)
+            //    throw new InvalidOperationException("Published year cannot be in the future.");
+
             _db.Books.Add(book);
             await _db.SaveChangesAsync();
             _logger.LogInformation("Book created: {Title} (ISBN: {ISBN})", book.Title, book.ISBN);
@@ -77,6 +105,11 @@ namespace LibraryManagementSystemAimanSahharon.Services
             await _db.SaveChangesAsync();
             _logger.LogInformation("Book deleted: ID {Id}", id);
             return true;
+        }
+
+        public async Task<bool> IsIsbnExistsAsync(string isbn) //check if there is any existing isbn
+        {
+            return await _db.Books.AnyAsync(b => b.ISBN == isbn);
         }
     }
 }

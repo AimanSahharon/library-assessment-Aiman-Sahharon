@@ -1,5 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model LibraryManagementSystemAimanSahharon.ViewModel.MemberProfileViewModel
 @{
+    ViewData["Title"] = "My Profile";
 }
+
+<h2>My Profile</h2>
+
+<div class="card" style="max-width: 500px;">
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">Name</dt>
+            <dd class="col-sm-8">@Model.FullName</dd>
+
+            <dt class="col-sm-4">Email</dt>
+            <dd class="col-sm-8">@Model.Email</dd>
+
+            <dt class="col-sm-4">Role</dt>
+            <dd class="col-sm-8">
+                <span class="badge @(Model.Role == "Librarian" ? "bg-warning text-dark" : "bg-primary")">
+                    @Model.Role
+                </span>
+            </dd>
+
+            <dt class="col-sm-4">Member Since</dt>
+            <dd class="col-sm-8">@Model.JoinedDate.ToString("MMMM dd, yyyy")</dd>
+
+            <dt class="col-sm-4">Active Loans</dt>
+            <dd class="col-sm-8">@Model.ActiveLoansCount / 3 allowed</dd>
+        </dl>
+
+        <a asp-controller="Members" asp-action="MyLoans" class="btn btn-primary">
+            View My Loans
+        </a>
+    </div>
+</div>

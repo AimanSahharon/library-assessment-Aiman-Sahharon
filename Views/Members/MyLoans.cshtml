@@ -1,0 +1,83 @@
+﻿@* @model IEnumerable<LibraryManagementSystemAimanSahharon.Models.Loan> *@
+@model LibraryManagementSystemAimanSahharon.ViewModels.MyLoansViewModel
+
+@{
+    ViewData["Title"] = "My Active Loans";
+}
+
+<h2>My Active Loans</h2>
+
+@if (!Model.ActiveLoans.Any())
+{
+    <div class="alert alert-info">No active loans.</div>
+}
+else
+{
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th>Book</th>
+                <th>Author</th>
+                <th>Borrowed On</th>
+                <th>Days Out</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loan in Model.ActiveLoans)
+            {
+                var daysOut = (DateTime.UtcNow - loan.BorrowedDate).Days;
+
+                <tr class="@(daysOut > 14 ? "table-danger" : "")">
+                    <td>@loan.Book.Title</td>
+                    <td>@loan.Book.Author</td>
+                    <td>@loan.BorrowedDate.ToString("MMM dd, yyyy hh:mm tt")</td>
+                    <td>@daysOut days</td>
+                    <td>
+                        <form asp-controller="Loans" asp-action="Return" method="post">
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="loanId" value="@loan.Id" />
+                            <button class="btn btn-success btn-sm">Return</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<hr />
+<h2>Loan History</h2>
+
+@if (!Model.LoanHistory.Any())
+{
+    <div class="alert alert-secondary">
+        No past loan history.
+    </div>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Book</th>
+                <th>Borrowed On</th>
+                <th>Returned On</th>
+                <th>Duration</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var loan in Model.LoanHistory)
+            {
+                var duration = (loan.ReturnedDate.Value - loan.BorrowedDate).Days;
+
+                <tr>
+                    <td>@loan.Book.Title</td>
+                    <td>@loan.BorrowedDate.ToString("MMM dd, yyyy hh:mm tt")</td>
+                    <td>@loan.ReturnedDate?.ToString("MMM dd, yyyy hh:mm tt")</td>
+                    <td>@duration days</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

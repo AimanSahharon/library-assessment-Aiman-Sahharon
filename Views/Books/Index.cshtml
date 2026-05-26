@@ -19,6 +19,15 @@
         <button type="submit" class="btn btn-primary">Search</button>
         <a asp-action="Index" class="btn btn-secondary">Clear</a>
     </div>
+    <div class="col-md-3">
+        <select name="sortBy" class="form-control">
+            <option value="">Sort By</option>
+            <option value="title_asc">Title (A → Z)</option>
+            <option value="title_desc">Title (Z → A)</option>
+            <option value="author_asc">Author (A → Z)</option>
+            <option value="author_desc">Author (Z → A)</option>
+        </select>
+    </div>
 </form>
 
 @if (!Model.Any())
@@ -61,6 +70,20 @@ else
                     <td>
                         <a asp-action="Details" asp-route-id="@book.Id"
                            class="btn btn-sm btn-outline-primary">View</a>
+
+                        @* Borrow button *@
+                        @if (User.Identity?.IsAuthenticated == true && book.AvailableCopies > 0)
+                        {
+                            <form asp-controller="Loans" asp-action="Borrow" method="post"
+                                  class="d-inline">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="bookId" value="@book.Id" />
+                                <input type="hidden" name="returnUrl" value="@Url.Action("Index", "Books")" />
+                                <button type="submit" class="btn btn-sm btn-success">
+                                    Borrow
+                                </button>
+                            </form>
+                        }
 
                         @* Edit/Delete only visible to Librarians *@
                         @if (User.IsInRole("Librarian"))

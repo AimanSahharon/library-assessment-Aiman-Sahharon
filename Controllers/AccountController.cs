@@ -84,5 +84,9 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Books");
         }
+
+        //Deny access if user is not librarian
+        [HttpGet]
+        public IActionResult AccessDenied() => View();
     }
 }

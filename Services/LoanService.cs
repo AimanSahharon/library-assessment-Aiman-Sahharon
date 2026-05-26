@@ -42,7 +42,7 @@ namespace LibraryManagementSystemAimanSahharon.Services
             {
                 BookId = bookId,
                 MemberId = memberId,
-                BorrowedDate = DateTime.UtcNow,
+                BorrowedDate = DateTime.Now,
                 ReturnedDate = null // Active loan
             };
 
@@ -71,7 +71,7 @@ namespace LibraryManagementSystemAimanSahharon.Services
                 return (false, "This book has already been returned.");
 
             // Mark as returned with current timestamp
-            loan.ReturnedDate = DateTime.UtcNow;
+            loan.ReturnedDate = DateTime.Now;
             await _db.SaveChangesAsync();
 
             _logger.LogInformation(
@@ -86,6 +86,15 @@ namespace LibraryManagementSystemAimanSahharon.Services
                 .Include(l => l.Book) // Load book info for display
                 .Where(l => l.MemberId == memberId && l.ReturnedDate == null)
                 .OrderByDescending(l => l.BorrowedDate)
+                .ToListAsync();
+        }
+
+        public async Task<List<Loan>> GetLoanHistoryAsync(int memberId)
+        {
+            return await _db.Loans
+                .Include(l => l.Book)
+                .Where(l => l.MemberId == memberId && l.ReturnedDate != null)
+                .OrderByDescending(l => l.ReturnedDate)
                 .ToListAsync();
         }
     }

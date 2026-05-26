@@ -26,7 +26,7 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
         // POST /Loans/Borrow/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Borrow(int bookId)
+        public async Task<IActionResult> Borrow(int bookId, string returnUrl)
         {
             var memberId = GetCurrentMemberId();
             if (memberId == null) return Unauthorized();
@@ -39,8 +39,13 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
             else
                 TempData["Error"] = message;
 
+            if (string.IsNullOrEmpty(returnUrl))
+                returnUrl = Url.Action("Index", "Books");
+
+
             // Redirect back to the book's detail page
-            return RedirectToAction("Details", "Books", new { id = bookId });
+            //return RedirectToAction("Details", "Books", new { id = bookId })
+            return LocalRedirect(returnUrl);
         }
 
         // POST /Loans/Return/5

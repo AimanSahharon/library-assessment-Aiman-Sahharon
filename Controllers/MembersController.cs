@@ -1,5 +1,6 @@
 ﻿using LibraryManagementSystemAimanSahharon.Services;
 using LibraryManagementSystemAimanSahharon.ViewModel;
+using LibraryManagementSystemAimanSahharon.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -56,8 +57,19 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
             if (memberIdClaim == null || !int.TryParse(memberIdClaim, out var memberId))
                 return Unauthorized();
 
-            var loans = await _loanService.GetActiveLoansForMemberAsync(memberId);
-            return View(loans);
+            var activeLoans = await _loanService.GetActiveLoansForMemberAsync(memberId);
+            var historyLoans = await _loanService.GetLoanHistoryAsync(memberId);
+
+            var vm = new MyLoansViewModel
+            {
+                ActiveLoans = activeLoans,
+                LoanHistory = historyLoans
+            };
+
+
+            //var loans = await _loanService.GetActiveLoansForMemberAsync(memberId);
+
+            return View(vm);
         }
     }
 }

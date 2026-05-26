@@ -3,6 +3,7 @@ using LibraryManagementSystemAimanSahharon.Services;
 using LibraryManagementSystemAimanSahharon.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace LibraryManagementSystemAimanSahharon.Controllers
 {
@@ -20,13 +21,14 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
         // GET /Books  — public, anyone can browse the catalog
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Index(string? author, string? title)
+        public async Task<IActionResult> Index(string? author, string? title, string? sortBy)
         {
             // Pass filter values back to the view to pre-fill the search boxes
             ViewBag.AuthorFilter = author;
             ViewBag.TitleFilter = title;
+            ViewBag.SortBy = sortBy;
 
-            var books = await _bookService.GetAllBooksAsync(author, title);
+            var books = await _bookService.GetAllBooksAsync(author, title, sortBy);
             return View(books);
         }
 
@@ -57,6 +59,18 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
             // ModelState.IsValid checks DataAnnotations on BookViewModel
             if (!ModelState.IsValid)
                 return View(vm); // Return form with validation errors
+
+            if (await _bookService.IsIsbnExistsAsync(vm.ISBN))
+            {
+                ModelState.AddModelError("ISBN", "ISBN number already exists.");
+                return View(vm);
+            }
+
+            if (vm.PublishedYear > DateTime.Now.Year)
+            {
+                ModelState.AddModelError("PublishedYear", "Published year cannot be in the future.");
+                return View(vm);
+            }
 
             var book = new Book
             {
@@ -100,6 +114,28 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
         public async Task<IActionResult> Edit(int id, BookViewModel vm)
         {
             if (!ModelState.IsValid) return View(vm);
+
+            // Check if book exists
+            var existingBook = await _bookService.GetBookByIdAsync(id);
+            if (existingBook == null)
+                return NotFound();
+
+            // Check ISBN duplicate (IMPORTANT: exclude current book)
+            var isDuplicate = await _bookService.IsIsbnExistsAsync(vm.ISBN);
+
+            if (isDuplicate && vm.ISBN != existingBook.ISBN)
+            {
+                ModelState.AddModelError("ISBN", "ISBN number already exists.");
+                return View(vm);
+            }
+
+            // Validate year
+            if (vm.PublishedYear > DateTime.Now.Year)
+            {
+                ModelState.AddModelError("PublishedYear", "Published year cannot be in the future.");
+                return View(vm);
+            }
+
 
             var updated = new Book
             {
