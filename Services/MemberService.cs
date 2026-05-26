@@ -48,7 +48,7 @@ namespace LibraryManagementSystemAimanSahharon.Services
                 Email = email,
                 FullName = fullName,
                 Role = "Member",             // All new sign-ins are Members by default
-                JoinedDate = DateTime.UtcNow // Provisioning timestamp
+                JoinedDate = DateTime.Now // Provisioning timestamp
             };
 
             _db.Members.Add(newMember);

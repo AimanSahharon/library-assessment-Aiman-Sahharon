@@ -17,7 +17,7 @@ namespace LibraryManagementSystemAimanSahharon.Services
         }
 
         public async Task<IEnumerable<Book>> GetAllBooksAsync(
-            string? authorFilter, string? titleFilter, string? sortBy)
+            string? authorFilter, string? titleFilter, string? sortBy, string? isbnFilter)
         {
             // Start with all books, including their loans so we can count available copies
             var query = _db.Books.Include(b => b.Loans).AsQueryable();
@@ -32,6 +32,10 @@ namespace LibraryManagementSystemAimanSahharon.Services
                 query = query.Where(b =>
                     b.Title.ToLower().Contains(titleFilter.ToLower()));
 
+            if (!string.IsNullOrWhiteSpace(isbnFilter))
+                query = query.Where(b =>
+                    b.ISBN.Contains(isbnFilter));
+
             query = sortBy switch
             {
                 "title_asc" => query.OrderBy(b => b.Title),
@@ -41,6 +45,7 @@ namespace LibraryManagementSystemAimanSahharon.Services
                 "author_desc" => query.OrderByDescending(b => b.Author),
 
                 _ => query.OrderBy(b => b.Title) // default
+                //=> query.OrderByDescending(b => b.Id)
             };
 
 

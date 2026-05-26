@@ -1,6 +1,7 @@
 ﻿using LibraryManagementSystemAimanSahharon.Models;
 using LibraryManagementSystemAimanSahharon.Services;
 using LibraryManagementSystemAimanSahharon.ViewModel;
+using LibraryManagementSystemAimanSahharon.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Globalization;
@@ -11,24 +12,55 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
     {
         private readonly IBookService _bookService;
         private readonly ILogger<BooksController> _logger;
+        private readonly ILoanService _loanService;
 
-        public BooksController(IBookService bookService, ILogger<BooksController> logger)
+        public BooksController(IBookService bookService, ILogger<BooksController> logger, ILoanService loanService)
         {
             _bookService = bookService;
             _logger = logger;
+            _loanService = loanService;
+        }
+
+        private int? GetCurrentMemberId()
+        {
+            var claim = User.FindFirst("memberId")?.Value;
+            return int.TryParse(claim, out var id) ? id : null;
         }
 
         // GET /Books  — public, anyone can browse the catalog
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IActionResult> Index(string? author, string? title, string? sortBy)
+        public async Task<IActionResult> Index(string? author, string? title, string? sortBy, string? isbn)
         {
             // Pass filter values back to the view to pre-fill the search boxes
             ViewBag.AuthorFilter = author;
             ViewBag.TitleFilter = title;
             ViewBag.SortBy = sortBy;
+            ViewBag.SortBy = isbn;
 
-            var books = await _bookService.GetAllBooksAsync(author, title, sortBy);
+            var books = await _bookService.GetAllBooksAsync(author, title, sortBy, isbn);
+
+            HashSet<int> borrowedBookIds = new();
+
+            var memberId = GetCurrentMemberId(); // add this method in BooksController
+
+            if (memberId != null)
+            {
+                borrowedBookIds = await _loanService.GetActiveLoansForMemberAsync(memberId.Value)
+                    .ContinueWith(t =>
+                        t.Result.Select(l => l.BookId).ToHashSet()
+                    );
+            }
+
+            var vm = new BookAvailableViewModel
+            {
+                Books = books,
+                BorrowedBookIds = borrowedBookIds
+            };
+
+            return View(vm);
+
+
             return View(books);
         }
 
@@ -39,7 +71,26 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
         {
             var book = await _bookService.GetBookByIdAsync(id);
             if (book == null) return NotFound();
-            return View(book);
+
+            var memberId = GetCurrentMemberId();
+
+            HashSet<int> borrowedBookIds = new();
+
+            if (memberId != null)
+            {
+                borrowedBookIds = (await _loanService.GetActiveLoansForMemberAsync(memberId.Value))
+                    .Select(l => l.BookId)
+                    .ToHashSet();
+            }
+
+            var vm = new BookAvailableDetailsViewModel
+            {
+                Book = book,
+                BorrowedBookIds = borrowedBookIds
+            };
+
+            return View(vm);
+            //return View(book);
         }
 
         // GET /Books/Create — only Librarians can see this form

@@ -37,6 +37,15 @@ namespace LibraryManagementSystemAimanSahharon.Services
             if (activeLoansCount >= 3)
                 return (false, "You already have 3 active loans. Return a book first.", null);
 
+            var alreadyBorrowed = await _db.Loans
+                .AnyAsync(l =>
+                    l.MemberId == memberId &&
+                    l.BookId == bookId &&
+                    l.ReturnedDate == null);
+
+            if (alreadyBorrowed)
+                return (false, "You already borrowed this book. Please return it first.", null);
+
             // All rules pass — create the loan
             var loan = new Loan
             {
