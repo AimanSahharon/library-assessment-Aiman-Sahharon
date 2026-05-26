@@ -1,0 +1,156 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|c:\\users\\user\\desktop\\librarymanagementsystem\\librarymanagementsystemaimansahharon\\services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|solutionrelative:services\\memberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|c:\\users\\user\\desktop\\librarymanagementsystem\\librarymanagementsystemaimansahharon\\services\\loanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|solutionrelative:services\\loanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|c:\\users\\user\\desktop\\librarymanagementsystem\\librarymanagementsystemaimansahharon\\viewmodel\\bookviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|solutionrelative:viewmodel\\bookviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|c:\\users\\user\\desktop\\librarymanagementsystem\\librarymanagementsystemaimansahharon\\services\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|solutionrelative:services\\ibookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|c:\\users\\user\\desktop\\librarymanagementsystem\\librarymanagementsystemaimansahharon\\viewmodel\\memberprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|solutionrelative:viewmodel\\memberprofileviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|c:\\users\\user\\desktop\\librarymanagementsystem\\librarymanagementsystemaimansahharon\\services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|solutionrelative:services\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|c:\\users\\user\\desktop\\librarymanagementsystem\\librarymanagementsystemaimansahharon\\services\\iloanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|solutionrelative:services\\iloanservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|c:\\users\\user\\desktop\\librarymanagementsystem\\librarymanagementsystemaimansahharon\\services\\imemberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4352C125-2A0C-4FED-8F9E-9455DD4D7649}|LibraryManagementSystemAimanSahharon.csproj|solutionrelative:services\\imemberservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MemberProfileViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\ViewModel\\MemberProfileViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\MemberProfileViewModel.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\ViewModel\\MemberProfileViewModel.cs",
+              "RelativeToolTip": "ViewModel\\MemberProfileViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T03:24:49.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BookViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\ViewModel\\BookViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\BookViewModel.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\ViewModel\\BookViewModel.cs",
+              "RelativeToolTip": "ViewModel\\BookViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T03:22:51.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoanService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\LoanService.cs",
+              "RelativeDocumentMoniker": "Services\\LoanService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\LoanService.cs",
+              "RelativeToolTip": "Services\\LoanService.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAADwv0IAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T03:20:14.697Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ILoanService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\ILoanService.cs",
+              "RelativeDocumentMoniker": "Services\\ILoanService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\ILoanService.cs",
+              "RelativeToolTip": "Services\\ILoanService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T03:19:29.77Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MemberService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\MemberService.cs",
+              "RelativeDocumentMoniker": "Services\\MemberService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\MemberService.cs",
+              "RelativeToolTip": "Services\\MemberService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAYwDoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T03:17:52.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IMemberService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\IMemberService.cs",
+              "RelativeDocumentMoniker": "Services\\IMemberService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\IMemberService.cs",
+              "RelativeToolTip": "Services\\IMemberService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T03:16:51.382Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BookService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\BookService.cs",
+              "RelativeDocumentMoniker": "Services\\BookService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\BookService.cs",
+              "RelativeToolTip": "Services\\BookService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T03:15:34.73Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IBookService.cs",
+              "DocumentMoniker": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\IBookService.cs",
+              "RelativeDocumentMoniker": "Services\\IBookService.cs",
+              "ToolTip": "C:\\Users\\User\\Desktop\\LibraryManagementSystem\\LibraryManagementSystemAimanSahharon\\Services\\IBookService.cs",
+              "RelativeToolTip": "Services\\IBookService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-26T03:13:26.381Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
