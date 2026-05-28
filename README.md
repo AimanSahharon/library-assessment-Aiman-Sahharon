@@ -127,10 +127,42 @@ Click on "Browse" tab and use the search bar to install dependencies
 
 **3. Setup Google Cloud OAuth**
 
+Setting up Google cloud allows user to sign in with their Google account.
 
 
+Go to https://cloud.google.com/ and click on the "Console" link and create and setup the project and obtain the Client ID and Client Secret
 
 
+under "Authorized redirect URIs"
+
+
+Add the following URL:
+
+
+```bash
+https://localhost:7238
+```
+
+
+```bash
+https://localhost:7238/signin-google
+```
+
+
+```bash
+https://localhost:7238/signin-oidc
+```
+
+
+Go back to Visual Studio 2022 and find appsetting.json file then find this section of the code and insert your clientId and ClientSecret (replace "your-google-client-id" and "your-google-client-secret" with actual clientId and ClientSecret
+
+```bash
+"Authentication": {
+  "Google": {
+    "ClientId": "your-google-client-id",
+    "ClientSecret": "your-google-client-secret"
+  }
+```
 
 
 
