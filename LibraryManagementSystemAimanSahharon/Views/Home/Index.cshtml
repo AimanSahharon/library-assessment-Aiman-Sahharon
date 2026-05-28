@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="text-center">
+
+        <h1 class="display-4 mb-4">Welcome To Library Management System</h1>
+
+        @if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <a asp-controller="Books"
+               asp-action="Index"
+               class="btn btn-success btn-lg px-4 py-2">
+
+                <i class="fa-solid fa-book me-2"></i>
+                Go To Books
+            </a>
+        }
+        else
+        {
+            <a asp-controller="Account"
+               asp-action="Login"
+               class="btn btn-light border shadow-sm btn-lg px-4 py-2">
+
+                <i class="fa-brands fa-google text-danger me-2"></i>
+                Login with Google
+            </a>
+        }
+
+    </div>
+</div>

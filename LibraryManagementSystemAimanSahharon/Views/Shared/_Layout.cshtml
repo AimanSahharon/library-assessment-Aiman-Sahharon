@@ -15,14 +15,18 @@
                 Library
             </a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" asp-controller="Books" asp-action="Index">Books</a>
 
                 @* Only show these links to signed-in users *@
                 @if (User.Identity?.IsAuthenticated == true)
                 {
+                    <a class="nav-link" asp-controller="Books" asp-action="Index">
+                        Books
+                    </a>
+
                     <a class="nav-link" asp-controller="Members" asp-action="Me">
                         My Profile
                     </a>
+
                     <a class="nav-link" asp-controller="Members" asp-action="MyLoans">
                         My Loans
                     </a>
@@ -36,15 +40,23 @@
                         </a>
                     }
 
-                    <form asp-controller="Account" asp-action="Logout" method="post"
+                    <form asp-controller="Account" asp-action="Logout"
+                          method="post"
                           class="d-inline">
+
                         @Html.AntiForgeryToken()
-                        <button class="btn btn-outline-light btn-sm ms-2">Sign Out</button>
+
+                        <button class="btn btn-outline-light btn-sm ms-2">
+                            Sign Out
+                        </button>
                     </form>
                 }
                 else
                 {
-                    <a class="nav-link" asp-controller="Account" asp-action="Login">
+                    <a class="nav-link"
+                       asp-controller="Account"
+                       asp-action="Login">
+
                         Sign In with Google
                     </a>
                 }

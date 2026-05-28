@@ -82,7 +82,8 @@ namespace LibraryManagementSystemAimanSahharon.Controllers
         {
             // Clear the cookie — user is now signed out
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("Index", "Books");
+            //return RedirectToAction("Index", "Books");
+            return RedirectToAction("Index", "Home");
         }
 
         //Deny access if user is not librarian
