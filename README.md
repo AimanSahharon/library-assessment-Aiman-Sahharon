@@ -154,7 +154,7 @@ https://localhost:7238/signin-oidc
 ```
 
 
-Go back to Visual Studio 2022 and find appsetting.json file then find this section of the code and insert your clientId and ClientSecret (replace "your-google-client-id" and "your-google-client-secret" with actual clientId and ClientSecret
+Go back to Visual Studio 2022 and find appsetting.json file then find this section of the code and insert your clientId and ClientSecret (replace "your-google-client-id" and "your-google-client-secret" with actual clientId and ClientSecret)
 
 ```bash
 "Authentication": {
@@ -164,6 +164,154 @@ Go back to Visual Studio 2022 and find appsetting.json file then find this secti
   }
 ```
 
+# **Setting up Database:**
 
 
-   
+In Visual Studio 2022 got to View > Terminal and select Developer Powershell
+
+
+<img width="1497" height="330" alt="Screenshot 2026-05-28 231440" src="https://github.com/user-attachments/assets/1056c3ad-8e55-48f8-9da3-42f6d2b82a16" />
+
+Type the following command to read the migration files and set up the database
+
+```bash
+dotnet tool install --global dotnet-ef
+```
+
+
+```bash
+dotnet restore
+```
+
+
+```bash
+dotnet ef database update
+```
+
+
+Then click on View > SQL Server Object Explorer
+
+
+Then click on (loacldb)\\MSSQLLocalDB > Databases then LibraryAssessmentDb should appear based on this snipet of code in appsettings.json
+
+
+```bash
+"ConnectionStrings": {
+  "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;**Database=LibraryAssessmentDb**;Trusted_Connection=True;MultipleActiveResultSets=true;TrustServerCertificate=True"
+},
+```
+
+
+# **Seeding data into database:**
+
+1. Open View > SQL Server Object Explorer
+
+
+2. Find your database e.g "LibraryAssessmentDb"
+
+
+3. Right-click database > New Query
+
+
+4. Open seed.sql and copy all content
+
+
+5. Paste script > Click Execute
+
+
+<img width="1481" height="792" alt="Screenshot 2026-05-28 233153" src="https://github.com/user-attachments/assets/487bf768-d58d-4444-83b7-0723bb8378b8" />
+
+
+# **Running Application**
+
+
+Click on "https" green button to start the application
+
+
+<img width="512" height="168" alt="Screenshot 2026-05-28 233913" src="https://github.com/user-attachments/assets/47e4ee73-474d-48e9-8785-93398e4c6dd1" />
+
+
+user will be greeted with the home page and click "Login with Google" and select the Google account to sign in 
+
+
+<img width="2559" height="1365" alt="Screenshot 2026-05-28 233759" src="https://github.com/user-attachments/assets/160a2f4e-f58d-4524-bcf9-09182c6e4b26" />
+
+
+Once login, the button will change allowing user to straight away go to Book page to start borrow their book
+
+
+<img width="2559" height="1368" alt="Screenshot 2026-05-28 233813" src="https://github.com/user-attachments/assets/0dac49f2-eb18-4c1a-af88-f408a46ee282" />
+
+
+The Book page allows Members to borrow the books as well as search title of the book, author, ISBN or sort by alphabetical order
+
+
+<img width="2559" height="1371" alt="Screenshot 2026-05-28 234357" src="https://github.com/user-attachments/assets/1fc7de33-7007-4ddf-8be0-bb79dfbee36f" />
+
+
+My Profile page shows when the Member joined, what their role are and how many books they can borrow before reaching the limit
+
+
+
+<img width="2544" height="1364" alt="Screenshot 2026-05-28 234403" src="https://github.com/user-attachments/assets/34d17f6f-5c5d-412a-8c3c-fc9bc56fed42" />
+
+
+At My Loans page is where Member can view their active book currently borrowing and history of books they have borrowed. 
+
+
+<img width="2559" height="1363" alt="Screenshot 2026-05-28 234840" src="https://github.com/user-attachments/assets/f3e8bac7-7861-405c-9fec-8662026c4dd9" />
+
+
+# **Assigning Roles**
+
+
+By default newly login user will be assign as Member role
+
+
+To assign user as Librarian once login run the following query either in Visual Studio 2022 or SQL Server Management Studio 21 
+
+```bash
+UPDATE Members
+SET Role = 'Librarian'
+WHERE Email = 'user@gmail.com';
+```
+
+
+Only the Librarian role can do CRUD functions to create new books, edit, update and delete. The Add New Book page allows Librarian to add new book to the catalog. 
+
+
+<img width="2559" height="1367" alt="Screenshot 2026-05-28 233829" src="https://github.com/user-attachments/assets/4f8c5b26-6602-4a79-8185-74e0d389d8cb" />
+
+
+At the My Book page, Librarian can still borrow books and has an addition option to edit and delete 
+
+
+<img width="2559" height="1362" alt="Screenshot 2026-05-28 233837" src="https://github.com/user-attachments/assets/fba1710b-4579-4416-b05d-28d2d230607c" />
+
+
+At My Profile page it shows the Librarian role has been assign
+
+
+<img width="2559" height="1366" alt="Screenshot 2026-05-28 233844" src="https://github.com/user-attachments/assets/88372f78-4c53-42e5-8fd5-71eda278c373" />
+
+
+# **Running the Test**
+
+In Visual Studio 2022 go to View > Terminal
+
+
+run the following command:
+```bash]
+dotnet test
+```
+
+
+This will run LoanServiceTest.cs under LibraryManagementSystemAimanSahharon.Test using xUnit Test Project
+<img width="924" height="326" alt="Screenshot 2026-05-29 000035" src="https://github.com/user-attachments/assets/e85992e2-9a5c-4bb2-b23d-545d3206ee7e" />
+
+
+
+
+
+
+
