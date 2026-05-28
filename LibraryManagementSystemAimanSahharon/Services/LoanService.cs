@@ -91,20 +91,43 @@ namespace LibraryManagementSystemAimanSahharon.Services
 
         public async Task<IEnumerable<Loan>> GetActiveLoansForMemberAsync(int memberId)
         {
-            return await _db.Loans
-                .Include(l => l.Book) // Load book info for display
+            //return await _db.Loans
+            //    .Include(l => l.Book) // Load book info for display
+            //    .Where(l => l.MemberId == memberId && l.ReturnedDate == null)
+            //    .OrderByDescending(l => l.BorrowedDate)
+            //    .ToListAsync();
+            _logger.LogInformation("Fetching active loans for MemberId: {MemberId}", memberId);
+
+            var loans = await _db.Loans
+                .Include(l => l.Book)
                 .Where(l => l.MemberId == memberId && l.ReturnedDate == null)
                 .OrderByDescending(l => l.BorrowedDate)
                 .ToListAsync();
+
+            _logger.LogInformation("Found {Count} active loans for MemberId: {MemberId}", loans.Count, memberId);
+
+            return loans;
         }
 
         public async Task<List<Loan>> GetLoanHistoryAsync(int memberId)
         {
-            return await _db.Loans
+            //return await _db.Loans
+            //    .Include(l => l.Book)
+            //    .Where(l => l.MemberId == memberId && l.ReturnedDate != null)
+            //    .OrderByDescending(l => l.ReturnedDate)
+            //    .ToListAsync();
+
+            _logger.LogInformation("Fetching loan history for MemberId: {MemberId}", memberId);
+
+            var history = await _db.Loans
                 .Include(l => l.Book)
                 .Where(l => l.MemberId == memberId && l.ReturnedDate != null)
                 .OrderByDescending(l => l.ReturnedDate)
                 .ToListAsync();
+
+            _logger.LogInformation("Found {Count} historical loans for MemberId: {MemberId}", history.Count, memberId);
+
+            return history;
         }
     }
 }
