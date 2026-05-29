@@ -24,6 +24,12 @@ The Library Management System allows user to borrow up to 3 books and return the
 4. **.NET 8 SDK**
 
 
+5. SQL Server Management Studio 21 (same function as SQL Server LocalDB in Visual Studio but easier to manage data)
+
+
+   Download link: https://learn.microsoft.com/en-us/ssms/install/install
+
+
 **Dependencies:**
 
 
@@ -52,6 +58,29 @@ The Library Management System allows user to borrow up to 3 books and return the
 
 
 - Microsoft.EntityFrameworkCore.InMemory version 8.0.27
+
+
+This project uses Entity Framework Core for the following reasons:
+
+1. **Migration tooling** — EF Core generates and applies schema migrations
+   automatically via `Add-Migration` and `Update-Database`. This keeps the
+   database schema always in sync with the C# model classes without
+   maintaining separate DDL scripts.
+
+2. **Fits the domain** — the Library domain has three related tables with
+   foreign keys and navigation properties. EF Core's `Include()` handles
+   JOIN loading in one line, and LINQ queries are strongly typed so
+   mistakes are caught at compile time rather than at runtime.
+
+3. **Single source of truth** — DataAnnotations on the model classes drive
+   both the database schema (column lengths, unique indexes, constraints)
+   and ASP.NET Core's request validation simultaneously. There is no risk
+   of the two getting out of sync.
+
+4. **Appropriate for this workload** — a library management system has low
+   concurrency and straightforward queries. EF Core's change tracking and
+   LINQ translation are well suited to this type of domain without
+   introducing unnecessary complexity.
 
 
 # **Setup:**
@@ -243,7 +272,7 @@ Once login, the button will change allowing user to straight away go to Book pag
 <img width="2559" height="1368" alt="Screenshot 2026-05-28 233813" src="https://github.com/user-attachments/assets/0dac49f2-eb18-4c1a-af88-f408a46ee282" />
 
 
-The Book page allows Members to borrow the books as well as search title of the book, author, ISBN or sort by alphabetical order
+The Book page allows Members to borrow the books as well as search title of the book, author, ISBN or sort by alphabetical order. Once they borrow a book the "Borrow" button will gray out assuming Member are only allowed to borrow 1 copy of the book. The button will also gray out if the copies of the book are unavailable. 
 
 
 <img width="2559" height="1371" alt="Screenshot 2026-05-28 234357" src="https://github.com/user-attachments/assets/1fc7de33-7007-4ddf-8be0-bb79dfbee36f" />
@@ -308,6 +337,26 @@ dotnet test
 
 This will run LoanServiceTest.cs under LibraryManagementSystemAimanSahharon.Test using xUnit Test Project
 <img width="924" height="326" alt="Screenshot 2026-05-29 000035" src="https://github.com/user-attachments/assets/e85992e2-9a5c-4bb2-b23d-545d3206ee7e" />
+
+
+# **Using SQL Server Management Studio 21**
+
+Once launch, click on "Connect Object Explorer" button next to the Connect dropdown in Object Explorer window. 
+
+
+type the following to connect to localdb:
+
+
+```bash
+(localdb)\MSSQLLocalDB
+```
+
+
+<img width="711" height="792" alt="Screenshot 2026-05-29 082719" src="https://github.com/user-attachments/assets/16a72f21-4fc3-4f29-99f3-d9d8074cd1d2" />
+
+
+Right click on the server and click on "New Query" and paste the schema.sql to create the tables and seed.sql for sample data. 
+
 
 
 
