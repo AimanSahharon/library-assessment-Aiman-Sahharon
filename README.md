@@ -1,7 +1,7 @@
 # **Project Description:**
 
 
-The Library Management System allows user to borrow up to 3 books and return the books. The librarian can add books and manage the book catalog. There are 2 user role one is Member that borrows the book and the other is Librarian
+The Library Management System allows user to borrow up to 3 books and return the books. The librarian can add books and manage the book catalog. There are 2 user role one is Member and the other is Librarian
 
 
 # **Prerequisite:**
@@ -24,7 +24,7 @@ The Library Management System allows user to borrow up to 3 books and return the
 4. **.NET 8 SDK**
 
 
-5. SQL Server Management Studio 21 (same function as SQL Server LocalDB in Visual Studio but easier to manage data)
+5. **SQL Server Management Studio 21 (same function as SQL Server LocalDB in Visual Studio but easier to manage data)**
 
 
    Download link: https://learn.microsoft.com/en-us/ssms/install/install
@@ -232,6 +232,9 @@ Then click on (loacldb)\\MSSQLLocalDB > Databases then LibraryAssessmentDb shoul
 
 
 # **Seeding data into database:**
+
+
+In Visual Studio 2022
 
 1. Open View > SQL Server Object Explorer
 
