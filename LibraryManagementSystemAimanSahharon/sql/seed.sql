@@ -12,7 +12,7 @@ INSERT INTO dbo.Books (Id, Title, Author, ISBN, PublishedYear, TotalCopies) VALU
 (7,  'Skulduggery Pleasant', 'Derek Landy', '978-1455586691', 2016, 2),
 (8,  'The Shining', 'Stephen King', '978-0307887894', 1977, 3),
 (9,  'The Invisible Man', 'H. G. Wells',   '978-0062316097', 1897, 4),
-(10, 'Marvel''s Spider-Man: Hostile Takeover', 'David Liss', '978-0262033848', 2018, 2),
+(10, 'Marvel''s Spider-Man: Hostile Takeover', 'David Liss', '978-0262033848', 2018, 1),
 (11, 'Starter Villain', 'John Scalzi', '978-1491924464', 2023, 3);
 
 SET IDENTITY_INSERT dbo.Books OFF;
